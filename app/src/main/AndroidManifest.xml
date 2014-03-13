@@ -24,8 +24,7 @@
         </activity>
         <activity
             android:name="com.ben.app.CameraActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_activity_camera" >
+            android:theme="@android:style/Theme.Holo.NoActionBar">
         </activity>
     </application>
 

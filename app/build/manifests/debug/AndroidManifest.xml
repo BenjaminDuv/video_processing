@@ -1,5 +1,5 @@
 <!-- From: file:/home/ben/VideoProcessing/android-studio/video_processing/app/src/main/AndroidManifest.xml --><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.ben.app">
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"/>
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="19"/>
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature android:name="android.hardware.camera"/>
@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:label="@string/title_activity_camera" android:name="com.ben.app.CameraActivity" android:screenOrientation="landscape">
+        <activity android:name="com.ben.app.CameraActivity" android:theme="@android:style/Theme.Holo.NoActionBar">
         </activity>
     </application>
 
