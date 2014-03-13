@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
@@ -49,10 +50,29 @@ public class CameraActivity extends Activity {
         setContentView(R.layout.activity_camera);
         mPreviewLayout = (FrameLayout) findViewById(R.id.camera_preview);
 
-        mPreviewLayout.setOnClickListener(new View.OnClickListener() {
+        mPreviewLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                if(isRecording){
+            public boolean onTouch(View view, MotionEvent event) {
+                 if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        //Initialize video camera
+                        if(prepareVideoRecorder()){
+                            // Camera is available and unlocked, MediaRecorder is prepared
+                            mMediaRecorder.start();
+
+                            //Inform the user
+                            Toast.makeText(getApplicationContext(),"Recording begun",Toast.LENGTH_SHORT);
+                            isRecording = true;
+                        } else {
+                            // prepare didnt work, release the camera
+                            releaseMediaRecorder();
+
+                            // Inform the user
+                            Toast.makeText(getApplicationContext(),"Media Recorder not prepared",Toast.LENGTH_SHORT);
+                        }
+                     return true;
+                }
+
+                if(event.getAction() == MotionEvent.ACTION_UP){
                     //Stop recording and release the camera
                     mMediaRecorder.stop(); //stop the recording
                     releaseMediaRecorder(); //release the media recorder object
@@ -61,24 +81,11 @@ public class CameraActivity extends Activity {
                     //Inform the use that recording has stopped
                     Toast.makeText(getApplicationContext(),"Recording stoped",Toast.LENGTH_SHORT);
                     isRecording = false;
-                } else{
-                    //Initialize video camera
-                    if(prepareVideoRecorder()){
-                        // Camera is available and unlocked, MediaRecorder is prepared
-                        mMediaRecorder.start();
 
-                        //Inform the user
-                        Toast.makeText(getApplicationContext(),"Recording begun",Toast.LENGTH_SHORT);
-                        isRecording = true;
-                    } else {
-                        // prepare didnt work, release the camera
-                        releaseMediaRecorder();
-
-                        // Inform the user
-                        Toast.makeText(getApplicationContext(),"Media Recorder not prepared",Toast.LENGTH_SHORT);
-                    }
-
+                    return true;
                 }
+
+                return false;
             }
         });
     }
