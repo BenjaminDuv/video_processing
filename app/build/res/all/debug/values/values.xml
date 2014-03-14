@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-bundles/ComAndroidSupportAppcompatV71901.aar/res/values/values.xml -->
+    <!-- From: file:/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values/values.xml -->
     <eat-comment />
 
     <attr name="actionBarDivider" format="reference" />
@@ -487,7 +487,7 @@
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-bundles/ComAndroidSupportAppcompatV71901.aar/res/values/values.xml -->
+    <!-- From: file:/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values/values.xml -->
     <eat-comment />
 
     <item name="action_bar_activity_content" type="id"/>
@@ -526,7 +526,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
-    <!-- From: file:/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-bundles/ComAndroidSupportAppcompatV71901.aar/res/values/values.xml -->
+    <!-- From: file:/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values/values.xml -->
     <eat-comment />
 
     <style name="TextAppearance.AppCompat.Base.CompactMenu.Dialog" parent="android:TextAppearance.Medium">

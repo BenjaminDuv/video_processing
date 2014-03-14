@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merger>
 
-    <dataSet config="ComAndroidSupportAppcompatV71901.aar" >
-        <source path="/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-bundles/ComAndroidSupportAppcompatV71901.aar/assets" />
+    <dataSet config="19.0.1" >
+        <source path="/home/ben/VideoProcessing/android-studio/video_processing/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/assets" />
     </dataSet>
     <dataSet config="main" >
         <source path="/home/ben/VideoProcessing/android-studio/video_processing/app/src/main/assets" />

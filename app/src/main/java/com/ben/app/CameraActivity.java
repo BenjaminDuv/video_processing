@@ -58,31 +58,28 @@ public class CameraActivity extends Activity {
                         if(prepareVideoRecorder()){
                             // Camera is available and unlocked, MediaRecorder is prepared
                             mMediaRecorder.start();
-
-                            //Inform the user
-                            Toast.makeText(getApplicationContext(),"Recording begun",Toast.LENGTH_SHORT);
                             isRecording = true;
                         } else {
                             // prepare didnt work, release the camera
                             releaseMediaRecorder();
-
-                            // Inform the user
-                            Toast.makeText(getApplicationContext(),"Media Recorder not prepared",Toast.LENGTH_SHORT);
                         }
                      return true;
                 }
 
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    //Stop recording and release the camera
-                    mMediaRecorder.stop(); //stop the recording
-                    releaseMediaRecorder(); //release the media recorder object
-                    mCamera.lock(); // take camera access back from MediaRecorder
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    try {
+                        //Stop recording and release the camera
+                        mMediaRecorder.stop(); //stop the recording
+                        releaseMediaRecorder(); //release the media recorder object
+                        mCamera.lock(); // take camera access back from MediaRecorder
 
-                    //Inform the use that recording has stopped
-                    Toast.makeText(getApplicationContext(),"Recording stoped",Toast.LENGTH_SHORT);
-                    isRecording = false;
+                        isRecording = false;
 
-                    return true;
+                        return true;
+                    }
+                    catch (Exception e){
+                        Log.d(LOG_TAG, "Error in Action Up" + e.getMessage());
+                    }
                 }
 
                 return false;
