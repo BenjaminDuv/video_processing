@@ -35,6 +35,7 @@ public class CameraActivity extends Activity {
     public static final int MEDIA_TYPE_VIDEO = 2;
 
 
+    private final static int MAX_RECORDING_DURATION = 10000;
     private final static String LOG_TAG = "CAMERA_ACTIVITY";
     private Camera mCamera;
     private Camera.Parameters mCameraParameters;
@@ -66,7 +67,7 @@ public class CameraActivity extends Activity {
                      return true;
                 }
 
-                if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getAction() == MotionEvent.ACTION_UP && isRecording) {
                     try {
                         //Stop recording and release the camera
                         mMediaRecorder.stop(); //stop the recording
@@ -85,6 +86,7 @@ public class CameraActivity extends Activity {
                 return false;
             }
         });
+
     }
 
     @Override
@@ -189,6 +191,7 @@ public class CameraActivity extends Activity {
         // Step 3: Set a CamcorderProfile (requires API Level 8 or higher)
         // TODO: Customize the profile for having small video files
         mMediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_480P));
+        mMediaRecorder.setMaxDuration(MAX_RECORDING_DURATION);
 
         // Step 4: Set output file
         mMediaRecorder.setOutputFile(getOutputMediaFile(MEDIA_TYPE_VIDEO).toString());
@@ -196,7 +199,21 @@ public class CameraActivity extends Activity {
         // Step 5: Set the preview output
         mMediaRecorder.setPreviewDisplay(mPreview.getHolder().getSurface());
 
-        // Step 6: Prepare configured MediaRecorder
+        //Step 6: Set limitations on the video and the file size
+        // TODO: Pop up a toast message for informing the user that the recording is finished
+        mMediaRecorder.setOnInfoListener(new MediaRecorder.OnInfoListener() {
+            @Override
+            public void onInfo(MediaRecorder mediaRecorder, int what, int extra) {
+                if(what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED){
+                    mMediaRecorder.stop();
+                    releaseMediaRecorder();
+                    mCamera.lock();
+                    isRecording = false;
+                }
+            }
+        });
+
+        // Step 7: Prepare configured MediaRecorder
         try {
             mMediaRecorder.prepare();
         } catch (IllegalStateException e) {

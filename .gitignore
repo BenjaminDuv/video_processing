@@ -19,4 +19,19 @@ local.properties
 .classpath
 .project
 
+# Android Studio
+.idea/
+.gradle
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/obj
+/*/*/src/jniLibs
+/*/*/production
+*.iml
+*.iws
+*.ipr
+*~
+*.swp
+
 .metadata
